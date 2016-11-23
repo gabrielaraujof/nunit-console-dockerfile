@@ -6,17 +6,16 @@ ENV NUNIT_VERSION 3.5
 
 RUN \
     apt-get update && \
+    apt-get install -y && \
     apt-get install -y wget && \
     nuget install NUnit.Runners -o /tmp/nunit -version $NUNIT_VERSION && \
+    ls /tmp/nunit && \
     mkdir /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/nunit-console.exe /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/nunit-console.exe.config /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/nunit.framework.dll /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/lib/nunit-console-runner.dll /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/lib/nunit.util.dll /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/lib/nunit.core.interfaces.dll /nunit && \
-    cp /tmp/nunit/NUnit.Runners.$NUNIT_VERSION/tools/lib/nunit.core.dll /nunit && \
-
+    cp /tmp/nunit/NUnit.ConsoleRunner.$NUNIT_VERSION/tools/* /nunit && \
+    cp /tmp/nunit/NUnit.Extension.NUnitProjectLoader.$NUNIT_VERSION/tools/* /nunit && \
+    cp /tmp/nunit/NUnit.Extension.NUnitV2Driver.$NUNIT_VERSION/tools/* /nunit && \
+    cp /tmp/nunit/NUnit.Extension.NUnitV2ResultWriter.$NUNIT_VERSION/tools/* /nunit && \
+    cp /tmp/nunit/NUnit.Extension.VSProjectLoader.$NUNIT_VERSION/tools/* /nunit && \
     apt-get clean
 
-ENTRYPOINT ["mono", "/nunit/nunit-console.exe"]
+ENTRYPOINT ["mono", "/nunit/nunit3-console.exe"]
