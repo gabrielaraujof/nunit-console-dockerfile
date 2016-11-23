@@ -6,7 +6,6 @@ ENV NUNIT_VERSION 3.5
 
 RUN \
     apt-get update && \
-    apt-get install -y && \
     apt-get install -y wget && \
     nuget install NUnit.Runners -o /tmp/nunit -version $NUNIT_VERSION && \
     mkdir /nunit && \
