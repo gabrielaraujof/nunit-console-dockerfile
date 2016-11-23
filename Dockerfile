@@ -2,7 +2,7 @@ FROM mono:latest
 
 MAINTAINER gabrielaraujof <contact@gbiel.com>
 
-ENV NUNIT_VERSION 3.5
+ENV NUNIT_VERSION 3.5.0
 
 RUN \
     apt-get update && \
